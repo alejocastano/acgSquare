@@ -7,7 +7,7 @@ import { Directive, HostListener, HostBinding } from "@angular/core";
 
 export class ContarClicksDirective{
     /*clickN: Esta seria una variable simple que llevara el conteo de todos los clics que se
-    estaran haciendo */
+    estaran haciendo. */
     clickN = 0;
     /*@HostBinding:Permite editar el elemento del DOM o del HTML desde nuestra propia directiva 
     Parametros:
