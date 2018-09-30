@@ -1,0 +1,208 @@
+
+  
+<div class="container">
+    <div style="text-align:center">
+        <h1>
+          Bienvenido a {{ title }}!<!--String interpolation.-->
+        </h1>
+        <h2>
+          {{ a + b}}<!--Puede hacer operaciones basicas de programación.-->
+        </h2>
+        <img width="300" alt="acg square logo" src="/src/assets/Images/acgSquareLogo.jpg">
+      </div>
+
+    <div>
+  <hr><button [disabled]="listo">Click me</button><!--Property binding.-->  
+  </div>
+  <div>
+      <hr><button (click)="hacerAlgo()">Haz algo!!</button><!--Event binding.-->  
+  </div>
+  <div>
+    <hr>
+    
+    <input type="text" placeholder="Tu Nombre" [(ngModel)]="nombre"><!-- [(ngModel)] : Two way binding -->
+    <br>
+    Mi nombre es {{nombre}}
+  </div>
+  
+  <div>
+      <hr>
+      <input type="text" placeholder="Tu primer apellido" [(ngModel)]="apellido1">
+      <br>
+      <input type="text" placeholder="Tu segundo apellido" [(ngModel)]="apellido2">
+      <br>
+      Mis apellidos son {{apellido1}} {{apellido2}}
+      <br>
+      <h1>Mi nombre completo es: {{nombre}} {{apellido1}} {{apellido2}}</h1>
+    </div>
+    <hr>
+    <hr>
+    <div>
+      <h1>Directivas en angular 4</h1>
+    </div>
+    <div><h2>ngFor</h2></div>
+    <div>
+      <ul class="list-group">
+          <!-- *ngFor : directiva hacer un for en angular (Esta es una directiva Estructural) -->
+        <li class="list-group-item"  *ngFor="let lugar of lugares">{{lugar.nombre}}</li>
+      </ul>
+    </div>
+    <hr>
+    <div><h2>ngIf</h2></div>
+    <div>
+      <ul class="list-group">
+          <!-- ng-container : Permite usar mas de una directiva estructural al mismo elemento HTML -->
+        <ng-container  *ngFor="let lugar of lugares2">
+          <!-- *ngFor : directiva hacer un for en angular (Esta es una directiva Estructural) -->
+        <li class="list-group-item"  *ngIf="lugar.active">{{lugar.nombre}}</li>
+      </ng-container>
+      </ul>
+    </div>
+      <hr>
+      <hr>
+    <div>
+      <h1>Utilizar librerias de tercero: Google Maps</h1>
+    </div>
+  
+  
+  
+    <div>
+        
+  
+  <!-- this creates a google map on the page with the given lat/lng from -->
+  <!-- the component as the initial center of the map: -->
+        <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+    </div>
+  
+    <hr>
+    <div><h2>ngStyle</h2></div>
+    <div>
+      <ul class="list-group">
+          <!-- ng-container : Permite usar mas de una directiva estructural al mismo elemento HTML -->
+        <ng-container  *ngFor="let lugar of lugares2">
+          <!-- *ngFor : directiva hacer un for en angular (Esta es una directiva Estructural) -->
+        <li class="list-group-item"  [ngStyle]="{color:(lugar.active)?'black':'peru'}">{{lugar.nombre}}</li>
+      </ng-container>
+      </ul>
+    </div>
+      <hr>
+  
+      <div><h2>ngClass y ngStyle</h2></div>
+    <div>
+      <ul class="list-group">
+          <!-- ng-container : Permite usar mas de una directiva estructural al mismo elemento HTML -->
+        <ng-container  *ngFor="let lugar of lugares2; let i = index">
+          <!-- *ngFor : directiva hacer un for en angular (Esta es una directiva Estructural) -->
+        <li class="list-group-item"  [ngStyle]="{color:(lugar.active)?'black':'peru'}" [ngClass]="{numero_par:(i+1)%2 !== 0}">{{lugar.nombre}}</li>
+      </ng-container>
+      </ul>
+    </div>
+    <hr>
+    
+    <div><h2>ngSwitch</h2></div>
+    <div>
+      <ul class="list-group">
+          <!-- ng-container : Permite usar mas de una directiva estructural al mismo elemento HTML -->
+        <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
+          <!-- *ngFor : directiva hacer un for en angular (Esta es una directiva Estructural) -->
+        <li class="list-group-item"  [ngStyle]="{color:(lugar.active)?'black':'peru'}" [ngClass]="{numero_par:(i+1)%2 !== 0}">
+          {{lugar.nombre}} - 
+          <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
+          <span *ngSwitchCase="2" [ngStyle]="{color: 'blue'}">Cercano</span>
+          <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
+        </li>
+      </ng-container>
+      </ul>
+    </div>
+    <hr>
+    <hr>
+    <div><h2>Directiva Propia (De atributo) - [resaltar]</h2></div>
+    <div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Lugares cercanos</h3>
+      <ul class="list-group">
+          <!-- ng-container : Permite usar mas de una directiva estructural al mismo elemento HTML -->
+        <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
+          <!-- *ngFor : directiva hacer un for en angular (Esta es una directiva Estructural) -->
+        <li class="list-group-item"  [ngStyle]="{color:(lugar.active)?'black':'peru'}" [ngClass]="{numero_par:(i+1)%2 !== 0}" [resaltar]="lugar.plan">
+          {{lugar.nombre}} - 
+          <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
+          <span *ngSwitchCase="2" [ngStyle]="{color: 'blue'}">Cercano</span>
+          <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
+        </li>
+      </ng-container>
+      </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>Lugares destacados</h3>
+  
+      </div>
+    </div>
+  
+    <hr>
+    <hr>
+    
+    <div><h2>Directiva Propia (De atributo) - [contar-clicks] <br>
+      @HostListener -  @HostBinding
+    </h2></div>
+    <div class="row">
+        <div class="col-md-8">
+          <h2>Lugares cercanos</h2>
+      <ul class="list-group">
+          <!-- ng-container : Permite usar mas de una directiva estructural al mismo elemento HTML -->
+        <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
+          <!-- *ngFor : directiva hacer un for en angular (Esta es una directiva Estructural) -->
+        <a>
+          <li class="list-group-item"  contar-clicks [ngStyle]="{color:(lugar.active)?'black':'peru'}" [ngClass]="{numero_par:(i+1)%2 !== 0}" [resaltar]="lugar.plan">
+          {{lugar.nombre}} - 
+          <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
+          <span *ngSwitchCase="2" [ngStyle]="{color: 'blue'}">Cercano</span>
+          <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
+        </li></a>
+      </ng-container>
+      </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Lugares cercanos</h2>
+    </div>
+  </div>
+
+  <hr>
+  <hr>
+  
+  <div><h2>Redirigir a otra pagina <br>
+  </h2></div>
+  <div class="row">
+      <div class="col-md-8">
+        <h2>Lugares cercanos</h2>
+    <ul class="list-group">
+      <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
+      <a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action:'view',referer:'google'}">
+        <li class="list-group-item">
+        {{lugar.nombre}} - 
+        <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
+        <span *ngSwitchCase="2" [ngStyle]="{color: 'blue'}">Cercano</span>
+        <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
+      </li></a>
+    </ng-container>
+    </ul>
+  </div>
+</div>
+  
+  </div>
+  <!-- <ul class="list-group">
+    <li class="list-group-item" >
+      <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+    </li>
+    <li class="list-group-item" >
+      <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+    </li>
+    <li class="list-group-item" >
+      <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+    </li>
+  </ul> -->
+  
+  
