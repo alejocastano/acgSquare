@@ -4,5 +4,45 @@
     </div>
     
     <div class="container">
-    
+            <div class="row">
+                    <div class="col-sm-12">
+                        <span id="imagen" style="padding:35%;">
+                        <img width="25%" alt="acg square logo" src="/src/assets/Images/acgSquareLogo.jpg">
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="well">
+                                No dudes en contactarnos si tienes alguna duda o inquietud:
+                                <br>
+                                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true" style="font-size:25px"></span> 3330900
+                                <br>
+                                <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:25px"></span> support@acgsuare.com
+                                <br>
+                                <hr>
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="font-size:25px"></span> C.C Los Molinos Local 137 (Medellin-Antioquia)
+                                <br>
+                                <agm-map [latitude]="lat" [longitude]="lng">
+                                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                        </agm-map>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="well">
+                                    <label for="">Nombre</label>
+                                    <input type="text" class="form-control">
+                                    <br>
+                                    <label for="">Correo</label>
+                                    <input type="email" class="form-control">
+                                    <br>
+                                    <label for="">Mensaje</label>
+                                    <textarea class="form-control"></textarea>
+                                    <hr>
+                                    <a class="btn btn-primary">Enviar</a>
+                                    <a class="btn btn-default" routerLink="/lugares">Cancelar</a>
+                            </div>
+                        </div>
+                </div>
     </div>
