@@ -11,6 +11,7 @@ import {Routes, RouterModule} from "@angular/router";
 import { DetalleComponent } from './detalle/detalle.component';
 import { LugaresComponent } from './lugares/lugares.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { LugaresService } from './Services/lugares.service';/*(==>1)*/
 
 const appRoutes : Routes=[
   {path:'',component: LugaresComponent},//Asi se definiria la ruta por defecto
@@ -40,7 +41,8 @@ const appRoutes : Routes=[
     }),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  //Aqui en providers traemos los servicios que vamos a utilizar.tener en cuenta que tambien se importo arriba Ver(==>2)
+  providers: [LugaresService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
