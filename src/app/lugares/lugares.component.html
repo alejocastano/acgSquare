@@ -192,6 +192,29 @@
   </div>
 </div>
   
+
+<div><h2>Firebase <br>
+</h2></div>
+<div class="row">
+    <div class="col-md-8">
+      <h2>Lugares cercanos</h2>
+      <a class="btn btn-primary" routerLink="/crear">Crear nuevo negocio</a>
+  <ul class="list-group">
+    <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
+    <a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action:'view',referer:'google'}">
+      <li class="list-group-item">
+      {{lugar.nombre}} - 
+      <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
+      <span *ngSwitchCase="2" [ngStyle]="{color: 'blue'}">Cercano</span>
+      <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
+    </li></a>
+  </ng-container>
+  </ul>
+</div>
+</div>
+
+
+
   </div>
   <!-- <ul class="list-group">
     <li class="list-group-item" >

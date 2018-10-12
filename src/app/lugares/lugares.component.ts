@@ -22,7 +22,7 @@ export class LugaresComponent {
     {nombre:'Veterinaria'}
   ];
   lugares2= null;
-
+  
   lat:number=4.6560663;
   lng:number=-74.0595918;
   

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { AngularFireDatabase } from "angularfire2/database";
 
 //Esto permite que este servicio pueda ser injectado en otros componentes
 @Injectable()
@@ -13,6 +14,8 @@ export class LugaresService{
         {id:6,plan:'gratuito',cercania:3,distancia:120,active:true,nombre:'Veterinaria6',descripcion: 'Descripción de este negocio. Mas adelante tendremos mas información'}
       ];
 
+      constructor(private afDB:AngularFireDatabase){}
+
       public getLugares(){
           return this.lugares;
       }
@@ -20,5 +23,10 @@ export class LugaresService{
     public buscarLugar(id){
         //Busca un lugar con el id del paraemtro del query dentro del array de lugares
         return this.lugares.filter((lugar)=>{return lugar.id==id})[0] || null;
+    }
+    public guardarLugar(lugar){
+        console.log(lugar);
+        this.afDB.database.ref('lugares/1').set(lugar);
+
     }
 }
