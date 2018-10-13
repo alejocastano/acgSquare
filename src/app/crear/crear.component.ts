@@ -28,7 +28,7 @@ export class CrearComponent {
         //Al subscribirse espera a que la peticion se cumpla
         this.lugaresService.ObtenerGeoData(direccion)
                 .subscribe((result)=>{
-                    debugger
+                    
                     this.lugar.lat = result.json().results[0].geometry.location.lat;
                     this.lugar.long = result.json().results[0].geometry.location.lng;
                     
@@ -41,7 +41,6 @@ export class CrearComponent {
                         this.lugaresService.guardarLugar(this.lugar);
                         alert('Negocio guardado con éxito')
                     }
-                    
                     this.lugar = {};
                 });
     }

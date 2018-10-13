@@ -28,18 +28,32 @@ export class LugaresComponent {
   
     /* Esta codigo asigna "true" despues de 3 segundos a la propiedad que deshabilita el boton**/
     constructor(private lugaresService: LugaresService){
-      //this.lugares2 = lugaresService.getLugares();
+          //this.lugares2 = lugaresService.getLugares();
     
-      /* si se manejaba traer datos de firebase en angular 4
-      lugaresService.getLugares()
-          .subscribe(lugares => { 
-            this.lugares2 = lugares;
-          });
+          /* si se manejaba traer datos de firebase en angular 4
+            lugaresService.getLugares()
+              .subscribe(lugares => { 
+              this.lugares2 = lugares;
+            });
           */
 
-         lugaresService.getLugares()
-         .valueChanges().subscribe(lugares => { 
-           this.lugares2 = lugares;
+          /* 
+            //Esta era la forma de traer lugares cuando se utlizan los websocket de firebase. Como se va a hacer la prueba con http, se utiliza el codigo de abajo, ver ==>1
+            lugaresService.getLugares()
+            .valueChanges().subscribe(lugares => { 
+              this.lugares2 = lugares;
+            });
+          */
+       
+         lugaresService.getLugares()//==>1 , get en firebase con HTTP
+         .subscribe(lugares => { 
+           this.lugares2 = lugares.json();
+           
+           var me = this;//Esto se utiliza para corregir un error en el scope de javascript que se presentara en las lineas de abajo ver ==>2
+           //al entrar a la funcion .map , el "this" ya haria parte del scope de .map no el scope global. Por esto el "this" hay que asignarlo en una variable aparte
+
+           //==>2 Este codigo convierte un objeto tipo Json en un array
+           me.lugares2 = Object.keys(me.lugares2).map(function(key){ return me.lugares2[key];});
          });
          
 
