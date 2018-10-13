@@ -26,10 +26,15 @@ export class LugaresService{
         //Busca un lugar con el id del paraemtro del query dentro del array de lugares
         return this.lugares.filter((lugar)=>{return lugar.id==id})[0] || null;
     }
+
     public guardarLugar(lugar){
         console.log(lugar);
         this.afDB.database.ref('lugares/'+lugar.id).set(lugar);
+    }
 
+    public editarLugar(lugar){
+        console.log(lugar);
+        this.afDB.database.ref('lugares/'+lugar.id).set(lugar);
     }
 
     public ObtenerGeoData(direccion){
@@ -37,5 +42,9 @@ export class LugaresService{
         //https://maps.google.com/maps/api/geocode/json?address=78-43+diagonal+70f,+Bogota,Colombia&key=AIzaSyA5GGebbpRWPIqq5Q1Z0d4HvDCioPM7ahM
         return this.http.get('https://maps.google.com/maps/api/geocode/json?address='+direccion+apikey);
 
+    }
+
+    public getLugar(id){
+        return this.afDB.object('lugares/'+id);
     }
 }

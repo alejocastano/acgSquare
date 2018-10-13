@@ -24,7 +24,7 @@ export class LugaresComponent {
   lugares2= null;
   
   lat:number=4.6560663;
-  lng:number=-74.0595918;
+  long:number=-74.0595918;
   
     /* Esta codigo asigna "true" despues de 3 segundos a la propiedad que deshabilita el boton**/
     constructor(private lugaresService: LugaresService){

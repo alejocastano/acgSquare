@@ -71,8 +71,8 @@
   
   <!-- this creates a google map on the page with the given lat/lng from -->
   <!-- the component as the initial center of the map: -->
-        <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-map [latitude]="lat" [longitude]="long">
+        <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
         </agm-map>
     </div>
   
@@ -198,10 +198,10 @@
 <div class="row">
     <div class="col-md-8">
       <h2>Lugares cercanos</h2>
-      <a class="btn btn-primary" routerLink="/crear">Crear nuevo negocio</a>
+      <a class="btn btn-primary" routerLink="/crear/new">Crear nuevo negocio</a>
   <ul class="list-group">
     <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
-    <a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action:'view',referer:'google'}">
+    <a routerLink="/crear/{{lugar.id}}">
       <li class="list-group-item">
       {{lugar.nombre}} - 
       <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
@@ -212,6 +212,10 @@
   </ul>
 </div>
 </div>
+
+<agm-map [latitude]="lat" [longitude]="long">
+  <agm-marker *ngFor="let lugar of lugares2" [latitude]="lugar.lat" [longitude]="lugar.long"></agm-marker>
+  </agm-map>
 
 
 

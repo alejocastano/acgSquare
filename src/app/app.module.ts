@@ -30,7 +30,7 @@ const appRoutes : Routes=[
   {path:'lugares',component: LugaresComponent}//El path "lugares" abre el componente AppComponent
   ,{path:'detalle/:id',component: DetalleComponent}
   ,{path:'contacto',component: ContactoComponent}
-  ,{path:'crear',component: CrearComponent}
+  ,{path:'crear/:id',component: CrearComponent}
 
 ];
 
