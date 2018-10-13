@@ -47,7 +47,7 @@ export class LugaresComponent {
        
          lugaresService.getLugares()//==>1 , get en firebase con HTTP
          .subscribe(lugares => { 
-           this.lugares2 = lugares.json();
+           this.lugares2 = lugares;//.json();//Se comenta ya que el map esta haciendo eso por nosotros
            
            var me = this;//Esto se utiliza para corregir un error en el scope de javascript que se presentara en las lineas de abajo ver ==>2
            //al entrar a la funcion .map , el "this" ya haria parte del scope de .map no el scope global. Por esto el "this" hay que asignarlo en una variable aparte

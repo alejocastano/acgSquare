@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 import {Http,Headers} from "@angular/http";
+//import 'rxjs/add/operator/map'; //asi se importaba en Angular 4
+import { map } from 'rxjs/operators'//==>1 importar map en Angular 6
+
 
 
 //Esto permite que este servicio pueda ser injectado en otros componentes
@@ -25,7 +28,26 @@ export class LugaresService{
           //Websocekt
           //return this.afDB.list('lugares/');
 
-          return this.http.get(this.APIENDPOINT+'/lugares.json');
+          //return this.http.get(this.APIENDPOINT+'/lugares.json');
+
+
+          //Esta seria la version de angular 4 de como usar el .map
+          /*
+          return this.http.get(this.APIENDPOINT+'/.json')
+          .map((resultado)=>{
+              const data = resultado.json().lugares;
+              return data;
+          })
+          */
+
+         //el .map debe de ser importado ver ==>1
+          return this.http.get(this.APIENDPOINT+'/.json')
+					.pipe(map((resultado)=>{
+							const data =  resultado.json().lugares
+							return data
+						})
+					)
+        
 
       }
 
