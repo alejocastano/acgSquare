@@ -28,7 +28,23 @@ export class LugaresComponent {
   
     /* Esta codigo asigna "true" despues de 3 segundos a la propiedad que deshabilita el boton**/
     constructor(private lugaresService: LugaresService){
-      this.lugares2 = lugaresService.getLugares();
+      //this.lugares2 = lugaresService.getLugares();
+    
+      /* si se manejaba traer datos de firebase en angular 4
+      lugaresService.getLugares()
+          .subscribe(lugares => { 
+            this.lugares2 = lugares;
+          });
+          */
+
+         lugaresService.getLugares()
+         .valueChanges().subscribe(lugares => { 
+           this.lugares2 = lugares;
+         });
+         
+
+
+
       setTimeout(()=>{
         this.listo = true;
       },3000)

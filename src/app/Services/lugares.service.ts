@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
+import {Http} from "@angular/http";
 
 //Esto permite que este servicio pueda ser injectado en otros componentes
 @Injectable()
@@ -14,10 +15,11 @@ export class LugaresService{
         {id:6,plan:'gratuito',cercania:3,distancia:120,active:true,nombre:'Veterinaria6',descripcion: 'Descripción de este negocio. Mas adelante tendremos mas información'}
       ];
 
-      constructor(private afDB:AngularFireDatabase){}
+      constructor(private afDB:AngularFireDatabase,private http: Http){}
 
       public getLugares(){
-          return this.lugares;
+          //return this.lugares;
+          return this.afDB.list('lugares/');
       }
 
     public buscarLugar(id){
@@ -26,7 +28,14 @@ export class LugaresService{
     }
     public guardarLugar(lugar){
         console.log(lugar);
-        this.afDB.database.ref('lugares/1').set(lugar);
+        this.afDB.database.ref('lugares/'+lugar.id).set(lugar);
+
+    }
+
+    public ObtenerGeoData(direccion){
+        var apikey = '&key=AIzaSyA5GGebbpRWPIqq5Q1Z0d4HvDCioPM7ahM';
+        //https://maps.google.com/maps/api/geocode/json?address=78-43+diagonal+70f,+Bogota,Colombia&key=AIzaSyA5GGebbpRWPIqq5Q1Z0d4HvDCioPM7ahM
+        return this.http.get('https://maps.google.com/maps/api/geocode/json?address='+direccion+apikey);
 
     }
 }

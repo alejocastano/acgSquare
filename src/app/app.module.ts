@@ -22,6 +22,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 /***************************************************************/
 /***************************************************************/
 import { CrearComponent } from './crear/crear.component';
+import { HttpModule } from '@angular/http';
 
 
 const appRoutes : Routes=[
@@ -68,7 +69,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule
   ],
   //Aqui en providers traemos los servicios que vamos a utilizar.tener en cuenta que tambien se importo arriba Ver(==>2)
   providers: [LugaresService],
