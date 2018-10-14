@@ -62,7 +62,7 @@ export class LugaresService{
         //Websocekt
         //this.afDB.database.ref('lugares/'+lugar.id).set(lugar);
         const _headers = new Headers({"Content-Type":"application/json"});
-        return this.http.post(this.APIENDPOINT+'/lugares/'+lugar.id+'.json',lugar,{headers : _headers}).subscribe();
+        return this.http.post(this.APIENDPOINT+'/lugares.json',lugar,{headers : _headers}).subscribe();
         //{ HttpClient, HttpHeaders } from ‘@angular/common/http’;
 
     }

@@ -54,7 +54,9 @@ export class LugaresComponent {
 
            //==>2 Este codigo convierte un objeto tipo Json en un array
            me.lugares2 = Object.keys(me.lugares2).map(function(key){ return me.lugares2[key];});
-         });
+         },error=>{ console.log(error);
+          alert('Que pena con vos, tenemos unos problemitas. Error:'+error.statusText);
+        });
          
 
 

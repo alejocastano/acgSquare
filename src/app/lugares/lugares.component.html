@@ -203,7 +203,7 @@
     <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
     <a routerLink="/crear/{{lugar.id}}">
       <li class="list-group-item">
-      {{lugar.nombre}} - 
+      {{lugar.nombre }} 
       <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
       <span *ngSwitchCase="2" [ngStyle]="{color: 'blue'}">Cercano</span>
       <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
@@ -216,6 +216,36 @@
 <agm-map [latitude]="lat" [longitude]="long">
   <agm-marker *ngFor="let lugar of lugares2" [latitude]="lugar.lat" [longitude]="lugar.long"></agm-marker>
   </agm-map>
+
+<hr>
+  <div><h2>PIPES <br>
+  </h2></div>
+  <div class="row">
+      <div class="col-md-8">
+        <h2>Lugares cercanos</h2>
+        <a class="btn btn-primary" routerLink="/crear/new">Crear nuevo negocio</a>
+    <ul class="list-group">
+      <ng-container  *ngFor="let lugar of lugares2; let i = index" [ngSwitch]="lugar.cercania">
+        <li class="list-group-item">
+          <!-- Asi se implementaria un PIPE ejemplo: uppercase,lowercase-->
+        <h3>{{lugar.nombre | uppercase }} </h3>
+        <br/>
+        <!-- Asi se implementaria un PIPE ejemplo: fecha en mayuscula-->
+        <small>Creado: {{lugar.id | date | uppercase}}</small>
+        <br/>
+        <!-- Parametros en Pipes con dos puntos :-->
+        <small>Pipe con parametros: {{lugar.id | date:'fullDate' | uppercase}}</small>
+        <br/>
+        <!-- Pipe para formatear un numero :-->
+        <small>{{'12345.29347837' | number: '1.2-2'}}</small>
+        <br/>
+        <!-- [innerHtml] convierte texto de html a texto normal "lugar.descripcion | linkifystr" no es necesario incluir la interpolacion de string {{}} porque esta esperando la expresion-->
+        <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+      </li>
+    </ng-container>
+    </ul>
+  </div>
+  </div>
 
 
 
