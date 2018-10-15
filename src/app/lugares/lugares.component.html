@@ -248,6 +248,21 @@
   </div>
 
 
+  <hr>
+  <div><h2>ANIMACIONES <br>
+  </h2></div>
+  <div class="row">
+      <div class="col-md-12">
+      <div id="cuadrado" [@contenedorAnimable]="animationState" (@contenedorAnimable.start)="animacionInicia($event)" (@contenedorAnimable.done)="animacionTermina($event)"></div>
+  </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+      <a class="btn btn-default" (click)="animar()">Animar!</a>
+      </div>
+  </div>
+<br/>
+
 
   </div>
   <!-- <ul class="list-group">

@@ -1,17 +1,39 @@
 import { Component } from '@angular/core';
 import { LugaresService } from '../Services/lugares.service';
 
+import {trigger,state,style, transition, animate} from "@angular/animations";
+
+
+
 @Component({
   selector: 'app-lugares',
   templateUrl: './lugares.component.html',
-  styleUrls: ['../app.component.css']
+  styleUrls: ['../app.component.css'],
+  //El siguiente array llamado animations, nos permite agregar animaciones a la aplicacion. trigger, state y style hay que importarlos. Tambien en "app.module.ts" hay que importar 
+  //un modulo llamado "BrowserAnimationsModule"
+  animations:[
+    trigger('contenedorAnimable',[
+        state('inicial',style({
+          opacity:0,
+          backgroundColor:'green',
+          transform:'rotate3d(0,0,0,0deg)'
+        })),
+        state('final',style({
+          opacity:1,
+          backgroundColor:'yellow',
+          transform:'rotate3d(5,10,20,30deg)'
+        })),
+        transition('inicial => final',animate(1000)),
+        transition('final => inicial',animate(500)),
+    ])
+  ]
 })
 export class LugaresComponent {
     listo = false;
     nombre:string = '';
     apellido1:string = '';
     apellido2:string = '';
-  
+
     //:any es cualquier tipo de objeto en Typescript
   lugares:any=[
     {nombre:'Floristeria'},
@@ -26,7 +48,20 @@ export class LugaresComponent {
   lat:number=4.6560663;
   long:number=-74.0595918;
   
-    /* Esta codigo asigna "true" despues de 3 segundos a la propiedad que deshabilita el boton**/
+  animationState = 'inicial';
+  
+  animar(){
+    this.animationState = (this.animationState == 'final')? 'inicial': 'final';
+  }
+
+  animacionInicia(e){
+    console.log(e);
+  }
+  animacionTermina(e){
+    console.log(e);
+  }
+
+  /* Esta codigo asigna "true" despues de 3 segundos a la propiedad que deshabilita el boton**/
     constructor(private lugaresService: LugaresService){
           //this.lugares2 = lugaresService.getLugares();
     
@@ -57,7 +92,7 @@ export class LugaresComponent {
          },error=>{ console.log(error);
           alert('Que pena con vos, tenemos unos problemitas. Error:'+error.statusText);
         });
-         
+              
 
 
 

@@ -26,6 +26,8 @@ import { HttpModule } from '@angular/http';
 import { LinkifystrPipe } from './pipes/linkifystr.pipe';
 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//Modulo de animaciones de angular
+
 const appRoutes : Routes=[
   {path:'',component: LugaresComponent},//Asi se definiria la ruta por defecto
   {path:'lugares',component: LugaresComponent}//El path "lugares" abre el componente AppComponent
@@ -72,7 +74,8 @@ export const firebaseConfig = {
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule
   ],
   //Aqui en providers traemos los servicios que vamos a utilizar.tener en cuenta que tambien se importo arriba Ver(==>2)
   providers: [LugaresService],
