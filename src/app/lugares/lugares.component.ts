@@ -25,7 +25,18 @@ import {trigger,state,style, transition, animate} from "@angular/animations";
         })),
         transition('inicial => final',animate(1000)),
         transition('final => inicial',animate(500)),
-    ])
+    ]),
+    //==>3 Animacion para los lugares destacados
+    trigger('animacionLugaresDestacados',[
+      state('inicial',style({
+        opacity:0,
+      })),
+      state('final',style({
+        opacity:1,
+      })),
+      transition('inicial => final',animate(2000)),
+      transition('final => inicial',animate(1)),
+  ])
   ]
 })
 export class LugaresComponent {
@@ -89,6 +100,7 @@ export class LugaresComponent {
 
            //==>2 Este codigo convierte un objeto tipo Json en un array
            me.lugares2 = Object.keys(me.lugares2).map(function(key){ return me.lugares2[key];});
+           this.animationState = 'final';//Cambia a estado final la animacion 'animacionLugaresDestacados' ver ==>3
          },error=>{ console.log(error);
           alert('Que pena con vos, tenemos unos problemitas. Error:'+error.statusText);
         });

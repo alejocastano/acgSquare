@@ -262,6 +262,35 @@
       </div>
   </div>
 <br/>
+<hr>
+  
+<div class="row">
+  <div class="col-md-6">
+      <div><h2>Todos los lugares<br>
+      </h2>
+    </div>
+      <ng-container  *ngFor="let lugar of lugares2">
+          <div class="bg-success  padding">
+            <a routerLink="/crear/{{lugar.id}}"><h3>{{lugar.nombre}}</h3></a>
+            <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+          </div>
+        </ng-container>
+  </div>
+  <div class="col-md-6"  [@animacionLugaresDestacados]="animationState">
+      <div><h2>Lugares destacados<br>
+      </h2>
+    </div>
+      <ng-container  *ngFor="let lugar of lugares2">
+          <div class="bg-danger padding" *ngIf="lugar.plan == 'pagado'">
+            <a routerLink="/crear/{{lugar.id}}"><h3>{{lugar.nombre}}</h3></a>
+            <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+          </div>
+        </ng-container>
+  </div>
+  
+</div>
+
+
 
 
   </div>
