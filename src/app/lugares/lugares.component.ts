@@ -83,14 +83,20 @@ export class LugaresComponent {
             });
           */
 
-          /* 
+          
+          /************************************************************* LLAMADO A FIREBASE CON WEBSOCKETS ************************************************************* */
             //Esta era la forma de traer lugares cuando se utlizan los websocket de firebase. Como se va a hacer la prueba con http, se utiliza el codigo de abajo, ver ==>1
+            //Nota curiosa: Con websockets es que la autenticacion con firebase se hace sin tener que programar mas codigo
             lugaresService.getLugares()
             .valueChanges().subscribe(lugares => { 
               this.lugares2 = lugares;
+              this.animationState = 'final';//Cambia a estado final la animacion 'animacionLugaresDestacados' ver ==>3
             });
-          */
-       
+          /****************************************************************************************************************************************************************** */
+          /****************************************************************************************************************************************************************** */
+          
+        /************************************************************* LLAMADO A FIREBASE CON HTTP **********************************************************************/
+        /*
          lugaresService.getLugares()//==>1 , get en firebase con HTTP
          .subscribe(lugares => { 
            this.lugares2 = lugares;//.json();//Se comenta ya que el map esta haciendo eso por nosotros
@@ -104,10 +110,9 @@ export class LugaresComponent {
          },error=>{ console.log(error);
           alert('Que pena con vos, tenemos unos problemitas. Error:'+error.statusText);
         });
-              
-
-
-
+        /**********************************************************************************************************************************************************************/
+        /**********************************************************************************************************************************************************************/
+          
       setTimeout(()=>{
         this.listo = true;
       },3000)

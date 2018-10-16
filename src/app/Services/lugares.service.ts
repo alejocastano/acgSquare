@@ -23,12 +23,13 @@ export class LugaresService{
       constructor(private afDB:AngularFireDatabase,private http: Http){}
 
       public getLugares(){
-          //return this.lugares;
+        //return this.lugares;
           
-          //Websocekt
-          //return this.afDB.list('lugares/');
-
-          //return this.http.get(this.APIENDPOINT+'/lugares.json');
+        /************************************************************* LLAMADO A FIREBASE CON WEBSOCKETS ************************************************************* */
+          return this.afDB.list('lugares/');
+        /****************************************************************************************************************************************************************** */
+        /****************************************************************************************************************************************************************** */
+          
 
 
           //Esta seria la version de angular 4 de como usar el .map
@@ -40,15 +41,19 @@ export class LugaresService{
           })
           */
 
+        /************************************************************* LLAMADO A FIREBASE CON HTTP ************************************************************* */
          //el .map debe de ser importado ver ==>1
+         /*
           return this.http.get(this.APIENDPOINT+'/.json')
 					.pipe(map((resultado)=>{
 							const data =  resultado.json().lugares
 							return data
 						})
-					)
+                    )
+                    */
         
-
+        /****************************************************************************************************************************************************************** */
+          /****************************************************************************************************************************************************************** */
       }
 
     public buscarLugar(id){

@@ -27,14 +27,20 @@ import { LinkifystrPipe } from './pipes/linkifystr.pipe';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//Modulo de animaciones de angular
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { AutorizacionService } from './Services/autorizacion.services';
+import { MyGuard } from './Services/my-guard.service';
 
 const appRoutes : Routes=[
   {path:'',component: LugaresComponent},//Asi se definiria la ruta por defecto
   {path:'lugares',component: LugaresComponent}//El path "lugares" abre el componente AppComponent
   ,{path:'detalle/:id',component: DetalleComponent}
   ,{path:'contacto',component: ContactoComponent}
-  ,{path:'crear/:id',component: CrearComponent}
-
+  //canActivate:[MyGuard] llama al servicio MyGuard el cual valida que la persona este logeada, asi validar que si puede acceder a la ruta
+  ,{path:'crear/:id',component: CrearComponent , canActivate:[MyGuard]}
+  ,{path:'login',component: LoginComponent}
+  ,{path:'registro',component: RegistroComponent}
 ];
 
 /***************************************************************/
@@ -61,7 +67,9 @@ export const firebaseConfig = {
   LugaresComponent,
   ContactoComponent,
   CrearComponent,
-  LinkifystrPipe
+  LinkifystrPipe,
+  LoginComponent,
+  RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +86,7 @@ export const firebaseConfig = {
     BrowserAnimationsModule
   ],
   //Aqui en providers traemos los servicios que vamos a utilizar.tener en cuenta que tambien se importo arriba Ver(==>2)
-  providers: [LugaresService],
+  providers: [LugaresService,AutorizacionService,MyGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
