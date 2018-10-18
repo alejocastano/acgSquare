@@ -24,6 +24,10 @@
           <li><a routerLink="/login">Login</a></li>
           <li><a routerLink="/registro">Registrarse</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
+          <li><a *ngIf="loggedUser" >{{loggedUser}}</a></li>
+          <li><a (click)="logOut()">Salir</a></li>
+        </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>

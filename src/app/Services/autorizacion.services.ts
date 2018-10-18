@@ -20,8 +20,7 @@ constructor(private angularFireAuth: AngularFireAuth,private router: Router){
 
             }).catch((error)=>{
                 console.log(error);
-            })
-        
+            })   
     }
 
     //Metodo tipo TypeScript
@@ -29,10 +28,10 @@ constructor(private angularFireAuth: AngularFireAuth,private router: Router){
         this.angularFireAuth.auth.signInWithEmailAndPassword(email,password)
         .then((response)=>{
             alert('Usuario logeado con éxito!');
-            
+            this.router.navigate(['lugares']);
         })
         .catch((error)=>{
-            alert('Un error ha ocurrido Error:'+error);
+            alert('Un error ha ocurrido Error: '+error);
             console.log(error);
         })
     }
@@ -41,10 +40,10 @@ constructor(private angularFireAuth: AngularFireAuth,private router: Router){
         this.angularFireAuth.auth.createUserWithEmailAndPassword(email,password)
         .then((response)=>{
             alert('Usuario registrado con éxito!');
-            
+            this.router.navigate(['lugares']);
         })
         .catch((error)=>{
-            alert('Un error ha ocurrido Error:'+error);
+            alert('Un error ha ocurrido Error: '+error);
             console.log(error);
         })
     }
@@ -52,6 +51,16 @@ constructor(private angularFireAuth: AngularFireAuth,private router: Router){
     public isLogged(){
         //"authState" solo existe cuando el usuario esta logeado
         return this.angularFireAuth.authState;
+    }
+
+    public logOut(){
+        this.angularFireAuth.auth.signOut();
+        alert('Sesión cerrada');
+        this.router.navigate(['lugares']);
+    }
+
+    public getUser(){
+         return this.angularFireAuth.auth;
     }
 
 }

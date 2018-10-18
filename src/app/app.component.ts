@@ -12,11 +12,17 @@ export class AppComponent {
   b     = 2;
 
   loggedIn = false;
+  loggedUser:any =null;
   constructor(private autorizacionService: AutorizacionService){
     this.autorizacionService.isLogged()
       .subscribe((result)=>{
           if (result && result.uid) {
             this.loggedIn = true;
+            //Esperamos medio segundo a que nos devuleva los datos del usuario logeado
+            setTimeout(() => {
+                this.loggedUser = this.autorizacionService.getUser().currentUser.email;
+                console.log(this.loggedUser);  
+            }, 500);
           } else {
             this.loggedIn = false;
           }
@@ -25,5 +31,10 @@ export class AppComponent {
       })
   }
   
+
+  logOut(){
+    this.autorizacionService.logOut();
+  }
+
 }
 

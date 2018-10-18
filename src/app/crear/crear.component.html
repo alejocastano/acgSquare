@@ -25,6 +25,17 @@
                             <input type="text" class="form-control" [(ngModel)]="lugar.plan">
                             <br>
                             <h3>Datos de dirección</h3>
+                            <div class="well">
+                                    <form>
+                                            <h3>Buscar Negocio en Google Maps</h3>
+                                            <!--Para poder utilizar este control ya que es reactivo se debe importar en el "imports" del app.module.ts el modulo "ReactiveFormsModule" -->
+                                            <input type="text" [formControl]="searchField" class="form-control"/>
+                                    </form>
+                                    <ul class="list-group">
+                                            <!-- el pipe async es util cuando llegan resultados de manera asyncrona -->
+                                            <li class="list-group-item" *ngFor="let result of results$ | async" (click)="asignarValores(result)">{{result.formatted_address}}</li>
+                                    </ul>
+                            </div>
                             <br>
                             <label for="">Calle y Número</label>
                             <input type="text" class="form-control" [(ngModel)]="lugar.calle">
